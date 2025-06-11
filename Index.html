@@ -1,0 +1,101 @@
+ <!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <title>Miljøstyringsprosess</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+      font-family: sans-serif;
+    }
+
+    .diagram-container {
+      width: 66.67vw;
+      height: 100vh;
+      position: relative;
+      background-image: url('bpmn_diagram.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: top left;
+      overflow: hidden;
+    }
+
+    .pdf-link {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      font-size: 18px;
+      text-align: center;
+      line-height: 24px;
+      text-decoration: none;
+      color: black;
+      background: white;
+      border-radius: 4px;
+      box-shadow: 0 0 2px rgba(0,0,0,0.5);
+      user-select: none;
+      touch-action: none;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .pdf-container {
+      width: 33.33vw;
+      height: 100vh;
+      border-left: 2px solid #007bff;
+      box-shadow: -2px 0 20px rgba(0,0,0,0.3);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #pdf-frame {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+  <script>
+    function showPDF(pdfPath) {
+      const frame = document.getElementById('pdf-frame');
+      frame.src = pdfPath + "#view=FitH";
+    }
+
+    // 🔒 Stopper skrolling i venstre del
+    window.addEventListener('DOMContentLoaded', () => {
+      const diagram = document.querySelector('.diagram-container');
+      diagram.addEventListener('wheel', function(e) {
+        e.preventDefault();
+      }, { passive: false });
+    });
+  </script>
+</head>
+<body>
+  <div class="diagram-container">
+    <a class="pdf-link" style="top: 7%; left: 13%;" onclick="showPDF('pdfs/Identifisere miljøaspekt.pdf')">📄</a>
+    <a class="pdf-link" style="top: 7%; left: 21%;" onclick="showPDF('pdfs/Bestemme vesentlige miljøaspekt.pdf')">📄</a>
+    <a class="pdf-link" style="top: 7%; left: 36.2%;" onclick="showPDF('pdfs/Utarbeide handlingsplan.pdf')">📄</a>
+    <a class="pdf-link" style="top: 17%; left: 36.2%;" onclick="showPDF('pdfs/Bidragsyter utarbeide handlingsplan.pdf')">📄</a>
+    <a class="pdf-link" style="top: 7%; left: 52.5%;" onclick="showPDF('pdfs/Bidragsyter presentere handlingsplan.pdf')">📄</a>
+    <a class="pdf-link" style="top: 17%; left: 52.5%;" onclick="showPDF('pdfs/Presentere handlingsplan for godkjenning.pdf')">📄</a>
+    <a class="pdf-link" style="top: 7%; left: 75.7%;" onclick="showPDF('pdfs/Bidragsyter følge opp handlingsplan.pdf')">📄</a>
+    <a class="pdf-link" style="top: 17%; left: 75.7%;" onclick="showPDF('pdfs/Følge opp og avvikshåntere handlingsplan.pdf')">📄</a>
+    <a class="pdf-link" style="top: 37%; left: 75.7%;" onclick="showPDF('pdfs/Gjennomføre handlingsplan.pdf')">📄</a>
+    <a class="pdf-link" style="top: 47%; left: 75.7%;" onclick="showPDF('pdfs/Bidragsyter gjennomføre handlingsplan.pdf')">📄</a>
+    <a class="pdf-link" style="top: 47%; left: 20.9%;" onclick="showPDF('pdfs/Bidragsyter miljøaspekt.pdf')">📄</a>
+    <a class="pdf-link" style="top: 47%; left: 36.1%;" onclick="showPDF('pdfs/Bidragsyter utarbeide handlingsplan.pdf')">📄</a>
+  </div>
+
+  <div class="pdf-container">
+    <iframe id="pdf-frame" src=""></iframe>
+  </div>
+</body>
+</html>
